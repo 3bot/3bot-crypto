@@ -3,7 +3,6 @@ from Crypto.Cipher import AES
 import hashlib
 import ConfigParser 
 
-__version__ = '1.0.0'
 __all__ = ["encrypt", "decrypt", "SECRET_KEY"]
 
 configfile = "/etc/3bot/config.ini"

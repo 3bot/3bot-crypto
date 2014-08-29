@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 
-from setuptools import setup
-import threebot_crypto as app
+from setuptools import setup 
 
 setup(
     name = "threebot-crypto",
-    version = app.__version__,
+    version = "1.0.0",
+    author_email = "",
+    maintainer_email = "",
     install_requires=[
         "pycrypto>=2.6.1",
     ],
