@@ -14,9 +14,9 @@ Install the latest, stable package from PyPI:
 
 # Configuration
 
-In /etc/3bot/config.ini add your worker `SECRET_KEY`. This must be set on my.3bot.io as well.
+In /etc/3bot/config.ini add your worker `SECRET_KEY`. This must be set on my.3bot.io or your instance as well.
  
-	
+
 # Usage
 
 	import threebot_crypto
@@ -40,3 +40,13 @@ In /etc/3bot/config.ini add your worker `SECRET_KEY`. This must be set on my.3bo
 * Python 
 * pycrypto >= 2.6.1
 * msgpack-python >= 0.4.1 
+
+# History & Changelog
+
+## 1.0.15
+
+Release date: 01 Sep 2014
+
+### What's new?
+
+* Stable release
