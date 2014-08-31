@@ -12,6 +12,12 @@ Install the latest, stable package from PyPI:
 	
 	pip install threebot-crypto
 
+
+To get the latest commit from GitHub
+
+	pip install -e git+git://github.com/3bot/threebot-crypto.git#egg=threebot_crypto
+
+
 # Configuration
 
 In /etc/3bot/config.ini add your worker `SECRET_KEY`. This must be set on my.3bot.io or your instance as well.
