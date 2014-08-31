@@ -2,7 +2,10 @@ import Crypto.Random
 from Crypto.Cipher import AES
 import hashlib
 import ConfigParser 
-
+import msgpack
+import zlib
+import cPickle as pickle
+    
 __all__ = ["encrypt", "decrypt", "SECRET_KEY"]
 
 configfile = "/etc/3bot/config.ini"
@@ -44,7 +47,10 @@ def unpad_text(padded_text):
     return text
     
     
-def encrypt(plaintext, secret_key=SECRET_KEY):
+def encrypt(json_dict, secret_key=SECRET_KEY):
+    obj = msgpack.packb(json_dict, use_bin_type=True)
+    p = pickle.dumps(obj, protocol = -1)
+    plaintext = zlib.compress(p)
     salt = Crypto.Random.get_random_bytes(SALT_SIZE)
     key = generate_key(secret_key, salt, NUMBER_OF_ITERATIONS)
     cipher = AES.new(key, AES.MODE_ECB)
@@ -60,7 +66,10 @@ def decrypt(ciphertext, secret_key=SECRET_KEY):
     key = generate_key(secret_key, salt, NUMBER_OF_ITERATIONS)
     cipher = AES.new(key, AES.MODE_ECB)
     padded_plaintext = cipher.decrypt(ciphertext_sans_salt)
-    plaintext = unpad_text(padded_plaintext)
+    com_plaintext = unpad_text(padded_plaintext)
+    dec_plaintext = zlib.decompress(com_plaintext)
+    unp_plaintext = pickle.loads(dec_plaintext)
+    plaintext = msgpack.unpackb(unp_plaintext, encoding='utf-8')
     return plaintext
     
     

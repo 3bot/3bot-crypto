@@ -7,6 +7,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+threebot_crypto.egg-info/
 env/
 bin/
 build/
