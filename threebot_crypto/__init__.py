@@ -79,11 +79,11 @@ def decrypt(ciphertext, secret_key=SECRET_KEY):
     ciphertext_sans_salt = ciphertext[SALT_SIZE:]
     key = generate_key(secret_key, salt, NUMBER_OF_ITERATIONS)
     cipher = AES.new(key, AES.MODE_ECB)
-    padded_plaintext = cipher.decrypt(ciphertext_sans_salt)
-    com_plaintext = unpad_text(padded_plaintext)
     try:
+        padded_plaintext = cipher.decrypt(ciphertext_sans_salt)
+        com_plaintext = unpad_text(padded_plaintext)
         dec_plaintext = zlib.decompress(com_plaintext)
-    except zlib.error:
+    except:
         sys.stderr.write("\nCannot decrypt message. Maybe your keys are not identic.\n")
         return None
     unp_plaintext = pickle.loads(dec_plaintext)
