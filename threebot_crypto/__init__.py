@@ -1,33 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
 import sys
 import Crypto.Random
 from Crypto.Cipher import AES
 import hashlib
-import ConfigParser
 import msgpack
 import zlib
 import cPickle as pickle
 
-__all__ = ["encrypt", "decrypt", "SECRET_KEY"]
-
-configfile = '/etc/3bot/config.ini'
-
-if os.path.isfile(configfile):
-    Config = ConfigParser.ConfigParser()
-    Config.read(configfile)
-else:
-    print "No configfile found in: '%s'" % configfile
-    sys.exit(2)
-
-try:
-    # Read secret key - never share yours!
-    SECRET_KEY = Config.get('3bot-settings', 'SECRET_KEY')
-except:
-    print "Invalid configfile in: '%s'" % configfile
-    sys.exit(2)
+__all__ = ["encrypt", "decrypt"]
 
 # Salt size in bytes
 SALT_SIZE = 32
@@ -61,7 +43,7 @@ def unpad_text(padded_text):
     return text
 
 
-def encrypt(json_dict, secret_key=SECRET_KEY):
+def encrypt(json_dict, secret_key):
     obj = msgpack.packb(json_dict, use_bin_type=True)
     p = pickle.dumps(obj, protocol=-1)
     plaintext = zlib.compress(p)
@@ -74,7 +56,7 @@ def encrypt(json_dict, secret_key=SECRET_KEY):
     return ciphertext_with_salt
 
 
-def decrypt(ciphertext, secret_key=SECRET_KEY):
+def decrypt(ciphertext, secret_key):
     salt = ciphertext[0:SALT_SIZE]
     ciphertext_sans_salt = ciphertext[SALT_SIZE:]
     key = generate_key(secret_key, salt, NUMBER_OF_ITERATIONS)
