@@ -52,7 +52,7 @@ In /etc/3bot/config.ini add your worker `SECRET_KEY`. This must be set on my.3bo
 ## latest
 
 Release date: ---
-* `use requirements.txt`
+* use `requirements.txt`
 
 ## 1.0.15
 
