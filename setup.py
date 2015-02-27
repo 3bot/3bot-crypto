@@ -7,8 +7,5 @@ setup(
     version="1.0.16",
     author_email="wagner@arteria.ch",
     maintainer_email="admin@arteria.ch",
-    install_requires=[
-        "pycrypto>=2.6.1",
-        "msgpack-python>=0.4.1"
-    ],
+    install_requires=open('requirements.txt').read().split('\n'),
 )
