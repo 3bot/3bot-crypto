@@ -3,6 +3,7 @@ language: python
 # this list can be easily generated py running `tox -l`
 env:
     - TOX_ENV=py27
+    - TOX_ENV=py36
 
 # Currently, Python 3.5 Interpreter is only available when it is specified
 # in the travis python section. So we have to work around this with this include
