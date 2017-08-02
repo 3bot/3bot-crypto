@@ -1,5 +1,9 @@
 # 3bot-crypto
 
+[![Build Status](https://travis-ci.org/3bot/3bot-crypto.svg?branch=master)](https://travis-ci.org/3bot/3bot-crypto)
+[![Coverage Status](https://coveralls.io/repos/3bot/3bot-crypto/badge.svg?branch=master&service=github)](https://coveralls.io/github/3bot/3bot-crypto?branch=master)
+[![PyPI](https://img.shields.io/pypi/v/threebot-hook.svg)](https://pypi.python.org/pypi/threebot-crypto)
+
 The [3bot-crypto](https://github.com/3bot/3bot-crypto) toolkit contains various cryptographic modules for the 3bot ecosystem.
 
 # Installation
