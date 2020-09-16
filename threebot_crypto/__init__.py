@@ -27,7 +27,8 @@ AES_MULTIPLE = 16
 
 def generate_key(secret_key, salt, iterations):
     assert iterations > 0
-    key = '{}{}'.format(secret_key, salt).encode('utf-8')
+    #key = '{}{}'.format(secret_key, salt).encode('utf-8')
+    key = f"{secret_key}{salt}"
     for i in range(iterations):
         key = hashlib.sha256(key).digest()
     return key
@@ -69,8 +70,8 @@ def decrypt(ciphertext, secret_key):
         padded_plaintext = cipher.decrypt(ciphertext_sans_salt)
         com_plaintext = unpad_text(padded_plaintext)
         dec_plaintext = zlib.decompress(com_plaintext)
-    except:
-        sys.stderr.write("\nCannot decrypt message. Maybe your keys are not identic.\n")
+    except Exception as ex:
+        sys.stderr.write(f"\nCannot decrypt message. Maybe your keys are not identic.\nException is: {ex}")
         return None
     unp_plaintext = pickle.loads(dec_plaintext)
     plaintext = msgpack.unpackb(unp_plaintext, encoding='utf-8')
