@@ -27,7 +27,7 @@ AES_MULTIPLE = 16
 
 def generate_key(secret_key, salt, iterations):
     assert iterations > 0
-    key = '{}{}'.format(secret_key, salt).encode('utf-8')
+    key = '{}{}'.format(secret_key.encode('utf-8'), salt)
     for i in range(iterations):
         key = hashlib.sha256(key).digest()
     return key
@@ -48,6 +48,7 @@ def unpad_text(padded_text):
 
 
 def encrypt(json_dict, secret_key):
+
     obj = msgpack.packb(json_dict, use_bin_type=True)
     p = pickle.dumps(obj, protocol=-1)
     plaintext = zlib.compress(p)
