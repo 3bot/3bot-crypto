@@ -27,8 +27,7 @@ AES_MULTIPLE = 16
 
 def generate_key(secret_key, salt, iterations):
     assert iterations > 0
-    #key = '{}{}'.format(secret_key, salt).encode('utf-8')
-    key = f"{secret_key}{salt}"
+    key = '{}{}'.format(secret_key, salt).encode('utf-8')
     for i in range(iterations):
         key = hashlib.sha256(key).digest()
     return key
