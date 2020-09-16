@@ -28,6 +28,8 @@ AES_MULTIPLE = 16
 def generate_key(secret_key, salt, iterations):
     if type(secret_key) != type(b""):
         secret_key = secret_key.encode('utf-8')
+    if type(salt) != type(b""):
+        salt = salt.encode('utf-8')
     assert iterations > 0
     key = '{}{}'.format(secret_key, salt) # .encode('utf-8')
     for i in range(iterations):
